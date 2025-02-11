@@ -14,13 +14,13 @@ export function Navbar() {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center">
+            <Link href="https://opentag.github.io" className="flex items-center">
               <Image src="/opentag.png" alt="OpenTag" width={40} height={40} className="mr-2" />
               <span className="font-bold text-xl hidden sm:inline">OpenTag</span>
             </Link>
             <div className="sm:hidden">
               <Button variant="ghost" asChild>
-                <Link href="/register">Get Tag</Link>
+                <Link href="https://opentag.github.io/register">Get Tag</Link>
               </Button>
             </div>
           </div>
@@ -28,10 +28,10 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex items-center gap-4">
               <Button variant="primary" asChild>
-                <Link href="/login">Login</Link>
+                <Link href="https://opentag.github.io/login">Login</Link>
               </Button>
               <Button variant="default" asChild>
-                <Link href="/register">Get Tag</Link>
+                <Link href="https://opentag.github.io/register">Get Tag</Link>
               </Button>
               <div className="hidden sm:inline">
                 <ModeToggle />
@@ -63,10 +63,10 @@ export function Navbar() {
       {menuOpen && (
         <div className="sm:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <Link href="/login" className="block px-3 py-2 rounded-md text-base font-medium text-black dark:text-white hover:bg-stone-700 hover:text-white">
+            <Link href="https://opentag.github.io/login" className="block px-3 py-2 rounded-md text-base font-medium text-black dark:text-white hover:bg-stone-700 hover:text-white">
               Login
             </Link>
-            <Link href="/register" className="block px-3 py-2 rounded-md text-base font-medium text-black dark:text-white hover:bg-stone-700 hover:text-white">
+            <Link href="https://opentag.github.io/register" className="block px-3 py-2 rounded-md text-base font-medium text-black dark:text-white hover:bg-stone-700 hover:text-white">
               Get Tag
             </Link>
           </div>
