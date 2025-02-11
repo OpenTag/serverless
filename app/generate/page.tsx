@@ -170,7 +170,7 @@ const Generate: React.FC = () => {
 
     try {
       const qrCodeDataUrl = await QRCode.toDataURL(qrCodeData, qrCodeOptions)
-      const existingPdfBytes = await fetch("/template.pdf").then((res) => res.arrayBuffer())
+      const existingPdfBytes = await fetch("/template-serverless.pdf").then((res) => res.arrayBuffer())
       const pdfDoc = await PDFDocument.load(existingPdfBytes)
       const pages = pdfDoc.getPages()
       const firstPage = pages[0]

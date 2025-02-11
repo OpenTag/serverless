@@ -86,7 +86,7 @@ export default function Home() {
           </div>
           <div className="relative w-full h-80 sm:h-[400px] my-8" data-aos="zoom-in" data-aos-delay="400">
             <Image
-              src="/sampletag.png"
+              src="/sampletag-s.png"
               alt="OpenTag Serverless Example"
               className="rounded-lg object-contain"
               fill
