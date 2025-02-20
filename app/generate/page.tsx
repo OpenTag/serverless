@@ -130,8 +130,6 @@ const Generate: React.FC = () => {
     const substanceUseEncoded = substanceUseMap[data.substanceUse].toString()
     const numericPart = dobEncoded + heightEncoded + weightEncoded + bloodGroupEncoded + substanceUseEncoded
     const base62NumericPart = decimalToBase62(Number.parseInt(numericPart))
-    console.log("Numeric part:", numericPart)
-    console.log("Base62 numeric part:", Number.parseInt(numericPart))
     let binaryPart = ""
     binaryPart += data.pregnant ? "1" : "0"
     binaryPart += data.organDonor ? "1" : "0"
@@ -155,17 +153,12 @@ const Generate: React.FC = () => {
   const handleGenerateQRCode = async () => {
     setLoading(true)
     const encodedData = encodeData(formData)
-    console.log("Encoded data:", encodedData)
-    console.log("PIN:", pin)
-    console.log("DOB", formData.dob)
-    console.log("Phone NO", formData.emergencyContact)
     const encryptedData = encryptData(encodedData, pin)
     const qrCodeData = `https://opentag.github.io/q?=${encryptedData}`
-    console.log("QR code data:", qrCodeData)
 
     const qrCodeOptions = {
       margin: 0,
-      color: { dark: "#ffffff", light: "#ff3131" },
+      color: { dark: "#ffffff", light: "#fe0000" },
     }
 
     try {
@@ -176,10 +169,9 @@ const Generate: React.FC = () => {
       const firstPage = pages[0]
       const qrImage = await pdfDoc.embedPng(qrCodeDataUrl)
 
-      firstPage.drawImage(qrImage, { x: 75, y: 190, width: 175, height: 175 })
-      const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
-      firstPage.drawText(`${pin}`, { x: 175, y: 144, size: 30, color: rgb(1, 1, 1), font: await pdfDoc.embedFont(StandardFonts.HelveticaBold) })
-      firstPage.drawText(`${formData.bloodGroup}`, { x: 200, y: 100, size: 40, color: rgb(1, 1, 1), font: await pdfDoc.embedFont(StandardFonts.HelveticaBold) })
+      firstPage.drawImage(qrImage, { x: 157, y: 50, width: 87, height: 87 })
+      firstPage.drawText(`${pin}`, { x: 90, y: 50, size: 25, color: rgb(1, 1, 1), font: await pdfDoc.embedFont(StandardFonts.HelveticaBold) })
+      firstPage.drawText(`${formData.bloodGroup}`, { x: 53, y: 52, size: 15, color: rgb(1, 0, 0), font: await pdfDoc.embedFont(StandardFonts.HelveticaBold) })
 
       const pdfBytes = await pdfDoc.save()
       const blob = new Blob([pdfBytes], { type: "application/pdf" })
@@ -202,6 +194,9 @@ const Generate: React.FC = () => {
         <h1 className="text-2xl font-bold text-stone-800 dark:text-stone-200 mb-6 text-center">
           Get <span className="italic text-red-500 dark:text-red-500">Serverless</span> Tag
         </h1>
+        <p className="text-sm text-stone-600 dark:text-stone-400 text-center">
+          Serverless means all you data to be stored in the QR code and no data will leave your device.
+        </p>
       </div>
       <Card className="w-full max-w-2xl">
         <CardHeader>
@@ -380,7 +375,11 @@ const Generate: React.FC = () => {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="pin">4-Digit PIN</Label>
+              <Label htmlFor="pin">Set a 4-digit PIN
+              <p className="text-sm text-stone-600 dark:text-stone-400">
+                This pin will be used to encrypt your data. possibly set it to last digits of your vehicle number
+              </p>
+              </Label>
               <Input
                 id="pin"
                 name="pin"
