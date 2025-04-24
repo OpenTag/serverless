@@ -155,7 +155,7 @@ const Generate: React.FC = () => {
     const encodedData = encodeData(formData)
     const encryptedData = encryptData(encodedData, pin)
     console.log("Encrypted Data:", encryptedData)
-    const qrCodeData = `https://opentag.github.io/q?=${encryptedData}`
+    const qrCodeData = `https://opentag.github.io/q?data=${encryptedData}`
 
     const qrCodeOptions = {
       margin: 0,
