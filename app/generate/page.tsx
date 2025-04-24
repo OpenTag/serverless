@@ -147,13 +147,14 @@ const Generate: React.FC = () => {
     for (let i = 0; i < data.length; i++) {
       encrypted += String.fromCharCode(data.charCodeAt(i) ^ pin.charCodeAt(i % pin.length))
     }
-    return btoa(encrypted)
+    return btoa(encrypted).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
   }
 
   const handleGenerateQRCode = async () => {
     setLoading(true)
     const encodedData = encodeData(formData)
     const encryptedData = encryptData(encodedData, pin)
+    console.log("Encrypted Data:", encryptedData)
     const qrCodeData = `https://opentag.github.io/q?=${encryptedData}`
 
     const qrCodeOptions = {
